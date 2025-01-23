@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+//using System.Collections;
+//using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class CharacterController : MonoBehaviour
@@ -20,6 +20,7 @@ public class CharacterController : MonoBehaviour
         B = new Vector3(1, 0, 1);
         startTime = Time.time;
         moveActionReference.action.Enable();
+        boostActionReference.action.Enable();
     }
 
     // Update is called once per frame
@@ -34,7 +35,16 @@ public class CharacterController : MonoBehaviour
 
         Vector2 frameMovement = moveActionReference.action.ReadValue<Vector2>();
         Vector3 frameMovement3D = new Vector3(frameMovement.x, 0, frameMovement.y);
-        Vector3 newPos = transform.position + frameMovement3D * speed * Time.deltaTime;
+        Vector3 newPos;
+        if (boostActionReference.action.IsPressed())
+        {
+
+            newPos = transform.position + frameMovement3D * speed * Time.deltaTime * 5;
+        }
+        else
+        {
+            newPos = transform.position + frameMovement3D * speed * Time.deltaTime;
+        }
         transform.position = newPos;
     }
 }

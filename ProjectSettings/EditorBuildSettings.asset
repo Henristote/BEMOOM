@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Script/BEMO-fly.unity
+    path: Assets/Scenes/Lobby.unity
+    guid: dbeaaa4c80bf0314f8d45e7c02735d1e
+  - enabled: 1
+    path: Assets/Scenes/BEMO-fly.unity
     guid: d7894eede40621645b8402f9dcd1fb74
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f2246473f6d6e7b4792d73eb085fb23a,
