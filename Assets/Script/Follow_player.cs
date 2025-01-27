@@ -1,12 +1,15 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class MainCamera : MonoBehaviour
+public class Follow_player : MonoBehaviour
 {
     [SerializeField]
     private Transform player;
+    [SerializeField]
+    public Vector3 offset = new Vector3(0f, 1.5f, 10f);
 
     [SerializeField]
-    private float smooth = 0.125f;
+    private float smooth = 1.25f;
 
     private Vector3 velocity = Vector3.zero;
     
@@ -14,7 +17,21 @@ public class MainCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 desiredPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
-        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition,ref velocity,smooth);
+        // Vector3 desiredPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
+        //transform.position = Vector3.SmoothDamp(transform.position, desiredPosition,ref velocity,smooth);
+        if (player == null)
+        {
+            Debug.LogWarning("Aucun target assigné à la caméra !");
+            return;
+        }
+
+        // Calcul de la position désirée de la caméra
+        Vector3 desiredPosition = player.position + player.rotation * offset;
+
+        // Déplacement progressif de la caméra pour lisser le mouvement
+        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smooth);
+
+        // Orientation de la caméra vers la cible
+        transform.LookAt(player.position + Vector3.up * 1.5f); // Ajuste le regard légèrement au-dessus du pivot de la cible
     }
 }

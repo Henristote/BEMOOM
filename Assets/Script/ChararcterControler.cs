@@ -29,12 +29,14 @@ public class CharacterController : MonoBehaviour
         moveActionReference.action.Enable();
         boostActionReference.action.Enable();
         shootActionReference.action.Enable();
+
+        shootActionReference.action.canceled += (_) => shooting = false;
     }
 
     public void Move()
     {
         Vector2 frameMovement = moveActionReference.action.ReadValue<Vector2>();
-        Vector3 frameMovement3D = new Vector3(frameMovement.x, 0, frameMovement.y);
+        Vector3 frameMovement3D = new(0, 0, frameMovement.y);
         Vector3 newPos;
         if (boostActionReference.action.IsPressed())
         {
@@ -44,6 +46,12 @@ public class CharacterController : MonoBehaviour
         {
             newPos = transform.position + frameMovement3D * speed * Time.deltaTime;
         }
+
+        if (frameMovement.x != 0)
+        {
+            transform.Rotate(new Vector3(0,frameMovement.x * speed, 0));
+        }
+
         transform.position = newPos;
         animator.SetBool("IsRunning", newPos.magnitude > 0);
     }
@@ -51,11 +59,8 @@ public class CharacterController : MonoBehaviour
     {
         if (shootActionReference.action.IsPressed() && shooting == false)
         {
-            Instantiate(projectilePrefab, SpawnPoint.position, transform.rotation);
+            Instantiate(projectilePrefab, SpawnPoint.position, SpawnPoint.rotation);
             shooting = true;
-        } else
-        {
-            shooting = false;
         }
     }
     // Update is called once per frame
