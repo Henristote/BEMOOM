@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 3699962885650173456}
   offset: {x: 0, y: 2.5, z: -10}
-  smooth: 0.125
+  smooth: 0.05
 --- !u!136 &1584322781377114331
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4072,7 +4072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 3699962885650173456}
   offset: {x: 0, y: 3, z: -8}
-  smooth: 0.125
+  smooth: 0.05
 --- !u!4 &9101167566944097848
 Transform:
   m_ObjectHideFlags: 0

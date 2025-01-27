@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MonoBehaviouringleton : MonoBehaviour
@@ -16,6 +17,7 @@ public class MonoBehaviouringleton : MonoBehaviour
         public void TakeDamage()
         {
             nbLifePoints--;
+            Debug.Log("-1 Point de Vie "+ nbLifePoints+" points restants");
         }
     }
     

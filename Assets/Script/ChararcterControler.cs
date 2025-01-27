@@ -37,23 +37,24 @@ public class CharacterController : MonoBehaviour
     {
         Vector2 frameMovement = moveActionReference.action.ReadValue<Vector2>();
         Vector3 frameMovement3D = new(0, 0, frameMovement.y);
+        if (frameMovement.x != 0)
+        {
+            transform.Rotate(new Vector3(0, (-1)*frameMovement.x * speed/2, 0));
+        }
+        Vector3 localMovement = transform.TransformDirection(frameMovement3D);
+
         Vector3 newPos;
         if (boostActionReference.action.IsPressed())
         {
-            newPos = transform.position + frameMovement3D * speed * Time.deltaTime * 5;
+            newPos = transform.position + localMovement * speed * Time.deltaTime * 5;
+            animator.SetBool("IsRunning", newPos.magnitude > 0);
         }
         else
         {
-            newPos = transform.position + frameMovement3D * speed * Time.deltaTime;
-        }
-
-        if (frameMovement.x != 0)
-        {
-            transform.Rotate(new Vector3(0,frameMovement.x * speed, 0));
+            newPos = transform.position + localMovement * speed * Time.deltaTime;
         }
 
         transform.position = newPos;
-        animator.SetBool("IsRunning", newPos.magnitude > 0);
     }
     public void Shoot()
     {

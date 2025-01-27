@@ -9,7 +9,7 @@ public class Follow_player : MonoBehaviour
     public Vector3 offset = new Vector3(0f, 1.5f, 10f);
 
     [SerializeField]
-    private float smooth = 1.25f;
+    private float smooth = 15f;
 
     private Vector3 velocity = Vector3.zero;
     
