@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6893412314641883738}
   - component: {fileID: 6922315885160047170}
-  m_Layer: 0
+  - component: {fileID: -1219185827541354154}
+  - component: {fileID: 2204653316437769838}
+  m_Layer: 6
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +59,48 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1, y: 0.33, z: 1.66}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-1219185827541354154
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536474770428722429}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!114 &2204653316437769838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536474770428722429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57602b6399520ad4d84e84a4add4c343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: -1219185827541354154}
+  Lauchforce: 50
+  destroyAfterSeconds: 5
 --- !u!1 &3528803641005357148
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +113,7 @@ GameObject:
   - component: {fileID: 4097194432919605183}
   - component: {fileID: 3448926160973031411}
   - component: {fileID: 2313101232580077211}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pixel (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +221,7 @@ GameObject:
   - component: {fileID: 540972744040214176}
   - component: {fileID: 956175515075355002}
   - component: {fileID: 1597025619252174941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pixel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +329,7 @@ GameObject:
   - component: {fileID: 2563019346496539186}
   - component: {fileID: 8307077784741952952}
   - component: {fileID: 3444783753204902787}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pixel (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +437,7 @@ GameObject:
   - component: {fileID: 7925335479959994400}
   - component: {fileID: 5439775486876678592}
   - component: {fileID: 9209434863707447854}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pixel (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

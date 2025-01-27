@@ -1,5 +1,6 @@
 //using System.Collections;
 //using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class CharacterController : MonoBehaviour
@@ -8,37 +9,35 @@ public class CharacterController : MonoBehaviour
     private InputActionReference moveActionReference;
     [SerializeField]
     private InputActionReference boostActionReference;
-    private Vector3 A;
-    private Vector3 B;
-    private float startTime;
+    [SerializeField]
+    private InputActionReference shootActionReference;
+    [SerializeField]
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private Transform SpawnPoint;
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private const string ANIMATOR_BOOL_IS_RUNNING = "IsRunning";
     private float speed = 4f;
+
+    private bool shooting = false;
     
     // Start is called before the first frame update
     private void Start()
     {
-        A = new Vector3(0, 0, 0);
-        B = new Vector3(1, 0, 1);
-        startTime = Time.time;
         moveActionReference.action.Enable();
         boostActionReference.action.Enable();
+        shootActionReference.action.Enable();
     }
 
-    // Update is called once per frame
-    private void Update()
+    public void Move()
     {
-        //float x = Mathf.Sin(2 * Mathf.PI * 2 * Time.time);
-        //transform.position = new Vector3(2 + x, transform.position.y, transform.position.z);
-        //if (Input.GetKeyDown(KeyCode.Escape)) { 
-        // startTime = Time.time;
-        //}
-        //float timeSinceStart= Time.time - startTime;
-
         Vector2 frameMovement = moveActionReference.action.ReadValue<Vector2>();
         Vector3 frameMovement3D = new Vector3(frameMovement.x, 0, frameMovement.y);
         Vector3 newPos;
         if (boostActionReference.action.IsPressed())
         {
-
             newPos = transform.position + frameMovement3D * speed * Time.deltaTime * 5;
         }
         else
@@ -46,5 +45,26 @@ public class CharacterController : MonoBehaviour
             newPos = transform.position + frameMovement3D * speed * Time.deltaTime;
         }
         transform.position = newPos;
+        animator.SetBool("IsRunning", newPos.magnitude > 0);
+    }
+    public void Shoot()
+    {
+        if (shootActionReference.action.IsPressed() && shooting == false)
+        {
+            Instantiate(projectilePrefab, SpawnPoint.position, transform.rotation);
+            shooting = true;
+        } else
+        {
+            shooting = false;
+        }
+    }
+    // Update is called once per frame
+    private void Update()
+    {
+        Move ();
+        Shoot();
+        
+        //var targetAngle = Mathf.Atan(newPos.x, newPos.y) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.Euler(0.0f, targetAngle, 0.0f);
     }
 }

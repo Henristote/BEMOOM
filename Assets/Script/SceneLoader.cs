@@ -9,8 +9,8 @@ public class SceneLoader : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame()
     {
-        SceneManager.LoadScene(gameSceneName, LoadSceneMode.Additive);
-        var newScene = SceneManager.GetSceneByName(gameSceneName);
+        SceneManager.LoadScene(gameSceneName);
+        //var newScene = SceneManager.GetSceneByName(gameSceneName);
 
     }
 

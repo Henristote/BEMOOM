@@ -5,12 +5,11 @@ namespace CodeGraph.UnityCourse.Enemies.CharacterController
 {
     public class DestroyOnCollision : MonoBehaviour
     {
-        public GameObject player;
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.gameObject == player)
+            if (collision.CompareTag("Player")|| collision.CompareTag("Projectile"))
             {
-                Destroy(gameObject);
+                    Destroy(gameObject);
             }
         }
     }

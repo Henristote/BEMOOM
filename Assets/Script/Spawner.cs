@@ -1,11 +1,13 @@
 
 using System;
 using System.Collections;
+using CodeGraph.UnityCourse.Enemies.CharacterController;
 using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject ennemy;
     public GameObject player;
+    public GameObject projectile;
 
     IEnumerator SpawnRoutine()
     {

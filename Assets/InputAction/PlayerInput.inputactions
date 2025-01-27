@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "shoot",
+                    "type": "Button",
+                    "id": "f3a48a45-db2e-43a6-a59e-948355fab089",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -59,8 +68,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "4724725e-186a-44da-8ec3-8cf442b3a5dc",
+                    "name": "Left",
+                    "id": "b8dd7e87-cada-494b-bc0d-c4607c372c6f",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -70,8 +79,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "9698deb5-6105-42d6-9c60-ebd2c270a4c0",
+                    "name": "Right",
+                    "id": "696f86f3-80a0-4118-ab8c-b0dc2c9534fe",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
@@ -88,6 +97,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7675df42-0357-44f6-93a8-e9c9a6033b36",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
