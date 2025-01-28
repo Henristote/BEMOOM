@@ -104,7 +104,7 @@
                     "name": "",
                     "id": "7675df42-0357-44f6-93a8-e9c9a6033b36",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "shoot",

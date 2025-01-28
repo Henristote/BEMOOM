@@ -17,8 +17,6 @@ public class Follow_player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Vector3 desiredPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
-        //transform.position = Vector3.SmoothDamp(transform.position, desiredPosition,ref velocity,smooth);
         if (player == null)
         {
             Debug.LogWarning("Aucun target assigné à la caméra !");

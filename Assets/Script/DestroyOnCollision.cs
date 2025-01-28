@@ -15,6 +15,7 @@ namespace CodeGraph.UnityCourse.Enemies.CharacterController
             if (collision.CompareTag("Player")|| collision.CompareTag("Projectile"))
             {
                 Destroy(gameObject);
+                //Destroy(collision.gameObject);
                 if (collision.CompareTag("Player"))
                 {
                     TauntAndDamage();
