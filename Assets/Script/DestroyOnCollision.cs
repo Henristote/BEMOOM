@@ -1,25 +1,29 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace CodeGraph.UnityCourse.Enemies.CharacterController
 {
+    
     public class DestroyOnCollision : MonoBehaviour
     {
-        private void TauntAndDamage()
-        {
-            GameManager.Instance.DecreasePlayerHP(1);
-            Debug.Log("Player lose 1PV. "+GameManager.Instance.PlayerHP+"PV left");
-        }
+        private const string projectile_layer_name = "Projectile";
+        private const string player_layer_name = "Player";
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.CompareTag("Player")|| collision.CompareTag("Projectile"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer(player_layer_name) || collision.gameObject.layer == LayerMask.NameToLayer(projectile_layer_name))
             {
                 Destroy(gameObject);
                 //Destroy(collision.gameObject);
-                if (collision.CompareTag("Player"))
+                if (collision.gameObject.layer == LayerMask.NameToLayer(player_layer_name))
                 {
-                    TauntAndDamage();
-                    Debug.Log("la fonction est utilisée");
+                    GameManager.Instance.nb_life -= 1;
+                    Debug.Log(GameManager.Instance.nb_life + " vies restantes");
+                }
+                if (collision.gameObject.layer == LayerMask.NameToLayer(projectile_layer_name))
+                {
+                    Destroy(collision.gameObject);
+                    GameManager.Instance.score += 1;
                 }
             }
         }

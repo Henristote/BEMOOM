@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BEMO-fly.unity
     guid: d7894eede40621645b8402f9dcd1fb74
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: fcc1b62e9d4c340469ef245b51ebf8fc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f2246473f6d6e7b4792d73eb085fb23a,
       type: 2}

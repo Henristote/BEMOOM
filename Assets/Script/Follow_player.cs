@@ -6,7 +6,7 @@ public class Follow_player : MonoBehaviour
     [SerializeField]
     private Transform player;
     [SerializeField]
-    public Vector3 offset = new Vector3(0f, 1.5f, 10f);
+    public Vector3 offset = new Vector3(0f, 3f, 10f);
 
     [SerializeField]
     private float smooth = 15f;
@@ -30,6 +30,6 @@ public class Follow_player : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smooth);
 
         // Orientation de la caméra vers la cible
-        transform.LookAt(player.position + Vector3.up * 1.5f); // Ajuste le regard légèrement au-dessus du pivot de la cible
+        transform.LookAt(player.position + Vector3.up * 2f); // Ajuste le regard légèrement au-dessus du pivot de la cible
     }
 }

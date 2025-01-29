@@ -7,7 +7,6 @@ public class Spawner : MonoBehaviour
 {
     public GameObject ennemy;
     public GameObject player;
-    public GameObject projectile;
 
     IEnumerator SpawnRoutine()
     {
