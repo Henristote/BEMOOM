@@ -20,6 +20,9 @@ public class CharacterController : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private const string ANIMATOR_BOOL_IS_RUNNING = "IsRunning";
+    private const string ANIMATOR_BOOL_IS_HIT = "IsHit";
+    private const string ANIMATOR_BOOL_IS_SHOOTING = "IsShoot";
+    private const string enemy_layer_name = "Enemy";
     private float speed = 4f;
     private int enemyLayer;
 
@@ -31,18 +34,22 @@ public class CharacterController : MonoBehaviour
         shootActionReference.action.Enable();
         shootActionReference.action.started += OnStart;
         shootActionReference.action.canceled += OnStart2; 
-        enemyLayer = LayerMask.NameToLayer("Ennemy");
+        enemyLayer = LayerMask.NameToLayer(enemy_layer_name);
 
 
     }
 
     private void OnStart(InputAction.CallbackContext context)
     {
-        animator.SetBool("IsShooting", true);
+        animator.SetBool(ANIMATOR_BOOL_IS_SHOOTING, true);
         Instantiate(projectilePrefab, SpawnPoint.position, SpawnPoint.rotation);
     }
+    private void OnStart2(InputAction.CallbackContext context)
+    {
+        animator.SetBool(ANIMATOR_BOOL_IS_SHOOTING, false);
+    }
 
-    
+
     private void OnDestroy()
     {
         shootActionReference.action.started -= OnStart;
@@ -50,30 +57,19 @@ public class CharacterController : MonoBehaviour
 
 
     }
-    private void OnStart2(InputAction.CallbackContext context)
-    {
-        animator.SetBool("IsShooting", false);
-    }
 
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == LayerMask.NameToLayer(enemy_layer_name))
         {
-            animator.SetBool("IsHit", true);
+            animator.SetTrigger(ANIMATOR_BOOL_IS_HIT);
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-
-        if (other.CompareTag("Ennemy"))
-        {
-            animator.SetBool("IsHit", false);
-        }
-    }
+   
     public void Move()
     {
-        animator.SetBool("IsRunning", false);
+        animator.SetBool(ANIMATOR_BOOL_IS_RUNNING, false);
         Vector2 frameMovement = moveActionReference.action.ReadValue<Vector2>();
         Vector3 frameMovement3D = new(0, 0, frameMovement.y);
         if (frameMovement.x != 0)
@@ -86,7 +82,7 @@ public class CharacterController : MonoBehaviour
         if (boostActionReference.action.IsPressed())
         {
             newPos = transform.position + localMovement * speed * Time.deltaTime * 5;
-            animator.SetBool("IsRunning", newPos.magnitude > 0);
+            animator.SetBool(ANIMATOR_BOOL_IS_RUNNING, newPos.magnitude > 0);
         }
         else
         {
